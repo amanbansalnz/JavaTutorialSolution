@@ -41,7 +41,7 @@ public class VideoStoreApplication {
     }
 
     private static void displayAddVideoScreen() {
-        logger.info("-------------------------------------- Video Returning Screen -------------------------------------");
+        logger.info("-------------------------------------- Add Video Screen -------------------------------------");
         logger.info("----------------- please input the video movie title you want to add to inventory -----------------");
         logger.info("------------------------------ please input 0 to display the main screen --------------------------");
 
@@ -117,9 +117,7 @@ public class VideoStoreApplication {
             }else{
                 checkOut(input);
             }
-
             logger.info("---------------------------- please input 0 to display the main screen -------------------------");
-
         }
 
         displayMainMenu();
@@ -131,7 +129,7 @@ public class VideoStoreApplication {
         if(checkedOut) {
             logger.info("Movie {} checked out successfully.\n",input);
         }else{
-            logger.info("Movie {} was not checkout please renting another movie.\n", input);
+            logger.info("Movie {} was not checkout it could be already checked out, or could be invalid selection please rent another movie.\n", input);
         }
     }
 
@@ -150,10 +148,10 @@ public class VideoStoreApplication {
     private static void displayMainMenu() {
         logger.info("----------------------- Welcome To Video Rental -----------------------");
         logger.info("------------- please input an option from the following selections ------------");
-        logger.info("--------------- please input 0 to display the main screen -------------");
         logger.info("1: for renting out movies");
         logger.info("2: for returning rented out movies");
         logger.info("3: for adding a new video to inventory");
+        logger.info("0: exit the app ");
         logger.info("-----------------------------------------------------------------------");
     }
 

@@ -7,20 +7,20 @@ import java.util.Map;
 
 public class RentalService {
 
-    Map<String, Video> videos = new HashMap<String,Video>();
+    Map<String, Video> videos = new HashMap<String, Video>();
 
-    public void addVideo(String videoName){
+    public void addVideo(String videoName) {
         Video video = new Video(videoName);
         videos.put(videoName, video);
     }
 
-    public boolean checkOut(String videoName){
+    public boolean checkOut(String videoName) {
 
         boolean isCheckedOut = false;
 
-        if(videos.containsKey(videoName)){
+        if (videos.containsKey(videoName)) {
             Video video = videos.get(videoName);
-            if(!video.isCheckedOut()) {
+            if (!video.isCheckedOut()) {
                 video.setCheckedOut(true);
                 isCheckedOut = true;
             }
@@ -28,33 +28,45 @@ public class RentalService {
         return isCheckedOut;
     }
 
-
-    public boolean returnVideo(String videoName){
+    public boolean returnVideo(String videoName) {
         boolean isReturned = false;
 
-        if(videos.containsKey(videoName)){
+        if (videos.containsKey(videoName)) {
             Video video = videos.get(videoName);
-            if(video.isCheckedOut()) {
+            if (video.isCheckedOut()) {
                 video.setCheckedOut(false);
                 isReturned = true;
             }
         }
-
         return isReturned;
-
     }
 
-    public void receiveRating(String videoName, int rating){
-        if(videos.containsKey(videoName)){
+
+//    public boolean returnVideo(String videoName){
+//        boolean isReturned = false;
+//
+//        if(videos.containsKey(videoName)){
+//            Video video = videos.get(videoName);
+//            video.setCheckedOut(false);
+//            isReturned= true;
+//        }
+//
+//        return isReturned;
+//
+//    }
+
+
+    public void receiveRating(String videoName, int rating) {
+        if (videos.containsKey(videoName)) {
             Video video = videos.get(videoName);
-            video.getRatingHistory().add(rating);
+            video.setRating(rating);
         }
     }
 
-    public String listInventory(){
-        StringBuilder builder = new StringBuilder( "\n-------------------------------------- List Of Videos To Checkout ------------------------------------- \n");
+    public String listInventory() {
+        StringBuilder builder = new StringBuilder("\n-------------------------------------- List Of Videos To Checkout ------------------------------------- \n");
 
-        for (Map.Entry<String,Video> entry : videos.entrySet()){
+        for (Map.Entry<String, Video> entry : videos.entrySet()) {
             Video video = entry.getValue();
             builder.append(video.toString());
         }
@@ -62,4 +74,7 @@ public class RentalService {
     }
 
 
+    public Map<String, Video> getVideos() {
+        return videos;
+    }
 }
