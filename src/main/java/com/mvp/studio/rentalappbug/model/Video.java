@@ -1,4 +1,4 @@
-package com.mvp.studio.rentalapp.model;
+package com.mvp.studio.rentalappbug.model;
 
 
 import java.util.ArrayList;

@@ -1,13 +1,13 @@
-package com.mvp.studio.rentalapp.service;
+package com.mvp.studio.rentalappbug.service;
 
-import com.mvp.studio.rentalapp.model.Video;
+import com.mvp.studio.rentalappbug.model.Video;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class RentalService {
 
-    Map<String, Video> videos = new HashMap<String,Video>();
+    Map<String, Video> videos = new HashMap<String, Video>();
 
     public void adVideo(String videoName){
         Video video = new Video(videoName);
@@ -34,10 +34,8 @@ public class RentalService {
 
         if(videos.containsKey(videoName)){
             Video video = videos.get(videoName);
-            if(video.isCheckedOut()) {
-                video.setCheckedOut(false);
-                isReturned = true;
-            }
+            video.setCheckedOut(false);
+            isReturned= true;
         }
 
         return isReturned;
@@ -54,7 +52,7 @@ public class RentalService {
     public String listInventory(){
         StringBuilder builder = new StringBuilder( "\n-------------------------------------- List Of Videos To Checkout ------------------------------------- \n");
 
-        for (Map.Entry<String,Video> entry : videos.entrySet()){
+        for (Map.Entry<String, Video> entry : videos.entrySet()){
             Video video = entry.getValue();
             builder.append(video.toString());
         }
