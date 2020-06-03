@@ -9,7 +9,7 @@ public class RentalService {
 
     Map<String, Video> videos = new HashMap<String,Video>();
 
-    public void adVideo(String videoName){
+    public void addVideo(String videoName){
         Video video = new Video(videoName);
         videos.put(videoName, video);
     }
