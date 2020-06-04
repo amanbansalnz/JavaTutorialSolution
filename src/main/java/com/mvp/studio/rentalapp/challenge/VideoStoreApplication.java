@@ -1,6 +1,7 @@
-package com.mvp.studio.rentalapp;
+package com.mvp.studio.rentalapp.challenge;
 
-import com.mvp.studio.rentalapp.service.RentalService;
+import com.mvp.studio.rentalapp.challenge.service.PasswordService;
+import com.mvp.studio.rentalapp.challenge.service.RentalService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -9,15 +10,18 @@ import java.util.Scanner;
 public class VideoStoreApplication {
 
     //It is important you understand the use of static keyword
-    private static Logger logger = LoggerFactory.getLogger(com.mvp.studio.rentalapp.VideoStoreApplication.class);
-    private static com.mvp.studio.rentalapp.service.RentalService rentalService = new RentalService();
+    private static Logger logger = LoggerFactory.getLogger(VideoStoreApplication.class);
+    private static RentalService rentalService = new RentalService();
+    private static PasswordService passwordService = new PasswordService();
     private static Scanner in = new Scanner(System.in);
 
     public static void main(String[] args) {
         addInitialVideos();
         displayMainMenu();
 
-        while (true) {
+        boolean notFinished = true;
+
+        while (notFinished) {
             String input = in.nextLine();
 
             if (input.equals("1")) {
@@ -27,10 +31,10 @@ public class VideoStoreApplication {
                 displayReturnVideoScreen();
                 returnAndRate();
             } else if (input.equals("3")) {
-                displayAddVideoScreen();
-                addVideoToInventory();
+                displayLoginScreen();
+                login();
             } else if (input.equals("0")) {
-                break;
+                notFinished = false;
             } else {
                 logger.info("You entered an invalid selection");
             }
@@ -39,7 +43,27 @@ public class VideoStoreApplication {
         logger.info("Bye Bye THANK YOU FOR VISITING COME BACK SOON");
     }
 
+    private static void login() {
+
+        while(true) {
+            String input = in.nextLine();
+            if ((input).equals("0")) {
+                break;
+            }else{
+                if( passwordService.validatePassword(input)){
+                    displayAddVideoScreen();
+                    addVideoToInventory();
+                    break;
+                }else{
+                    logger.info("Invalid password entered! please try again!");
+                }
+            }
+            displayLoginScreen();
+        }
+    }
+
     private static void addVideoToInventory() {
+
         while (true) {
             displayAllVideos();
             String input = in.nextLine();
@@ -54,6 +78,7 @@ public class VideoStoreApplication {
     }
 
     private static void returnAndRate() {
+
         while (true) {
             displayAllVideos();
             String input = in.nextLine();
@@ -103,7 +128,7 @@ public class VideoStoreApplication {
         logger.info("------------- please input an option from the following selections ------------");
         logger.info("1: for renting out movies");
         logger.info("2: for returning rented out movies");
-        logger.info("3: for adding a new video to inventory");
+        logger.info("3: for login screen");
         logger.info("0: exit the app ");
         logger.info("-----------------------------------------------------------------------");
     }
@@ -124,6 +149,12 @@ public class VideoStoreApplication {
         logger.info("-------------------------------------- Add Video Screen -------------------------------------");
         logger.info("----------------- please input the video movie title you want to add to inventory -----------------");
         logger.info("------------------------------ please input 0 to display the main screen --------------------------");
+    }
+
+    private static void displayLoginScreen() {
+        logger.info("------------------------------- Login Screen -----------------------------------");
+        logger.info("------------------ please input the secret password to login -------------------");
+        logger.info("------------------- please input 0 to display the main screen ------------------");
     }
 
     private static void addInitialVideos() {

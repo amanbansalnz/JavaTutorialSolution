@@ -1,6 +1,6 @@
-package com.mvp.studio.rentalapp.service;
+package com.mvp.studio.rentalapp.challenge.service;
 
-import com.mvp.studio.rentalapp.model.Video;
+import com.mvp.studio.rentalapp.challenge.model.Video;
 
 import java.util.HashMap;
 import java.util.Map;

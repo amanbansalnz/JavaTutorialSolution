@@ -1,6 +1,6 @@
-package com.mvp.studio.rentalapp;
+package com.mvp.studio.rentalapp.challenge2;
 
-import com.mvp.studio.rentalapp.service.RentalService;
+import com.mvp.studio.rentalapp.challenge2.service.RentalService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -9,8 +9,8 @@ import java.util.Scanner;
 public class VideoStoreApplication {
 
     //It is important you understand the use of static keyword
-    private static Logger logger = LoggerFactory.getLogger(com.mvp.studio.rentalapp.VideoStoreApplication.class);
-    private static com.mvp.studio.rentalapp.service.RentalService rentalService = new RentalService();
+    private static Logger logger = LoggerFactory.getLogger(VideoStoreApplication.class);
+    private static RentalService rentalService = new RentalService();
     private static Scanner in = new Scanner(System.in);
 
     public static void main(String[] args) {

@@ -1,6 +1,6 @@
-package com.mvp.studio.rentalapp.service;
+package com.mvp.studio.rentalapp.challenge2.service;
 
-import com.mvp.studio.rentalapp.model.Video;
+import com.mvp.studio.rentalapp.challenge2.model.Video;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -33,15 +33,13 @@ public class RentalService {
         return isCheckedOut;
     }
 
-    public boolean returnVideo(String videoName) {
+    public boolean returnVideo(String videoName){
         boolean isReturned = false;
 
-        if (videos.containsKey(videoName)) {
+        if(videos.containsKey(videoName)){
             Video video = videos.get(videoName);
-            if (video.isCheckedOut()) {
-                video.setCheckedOut(false);
-                isReturned = true;
-            }
+            video.setCheckedOut(false);
+            isReturned= true;
         }
         return isReturned;
     }
