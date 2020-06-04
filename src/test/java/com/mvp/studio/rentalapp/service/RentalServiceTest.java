@@ -14,20 +14,20 @@ public class RentalServiceTest {
     private RentalService rentalService;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         rentalService = new RentalService();
         rentalService.addVideo("testing2");
     }
 
     @Test
-    public void addVideo() {
+    public void givenANewVideoToAdd_whenAddVideo_thenAddVideo() {
         rentalService.addVideo("testing");
         Map<String, Video> videos = rentalService.getVideos();
         assertThat(videos.containsKey("testing"), is(true));
     }
 
     @Test
-    public void checkOut() {
+    public void givenAMovieTitle_whenCheckOut_thenVideoIsCheckedOut() {
         Map<String, Video> videos = rentalService.getVideos();
         assertThat(videos.get("testing2").isCheckedOut(), is(false));
         rentalService.checkOut("testing2");
@@ -35,7 +35,7 @@ public class RentalServiceTest {
     }
 
     @Test
-    public void returnVideo() {
+    public void  givenAMovieTitle_whenReturnVideo_thenVideoIsReturned() {
         Map<String, Video> videos = rentalService.getVideos();
         rentalService.checkOut("testing2");
         assertThat(videos.get("testing2").isCheckedOut(), is(true));
@@ -44,7 +44,7 @@ public class RentalServiceTest {
     }
 
     @Test
-    public void receiveRating() {
+    public void  givenAMovieTitleAndReturning_whenReceiveRating_thenRatingIsSaved() {
         rentalService.receiveRating("testing2", 3);
         Map<String, Video> videos = rentalService.getVideos();
         assertThat(videos.get("testing2").getRating(), is(3.0));

@@ -4,6 +4,9 @@ package com.mvp.studio.rentalapp.model;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This sort of class is called a pojo where it only keeps state and attributes associated with this pojo
+ */
 public class Video {
 
     private String movieTitle;

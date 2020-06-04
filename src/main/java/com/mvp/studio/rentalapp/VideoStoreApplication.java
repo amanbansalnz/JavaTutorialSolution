@@ -8,13 +8,12 @@ import java.util.Scanner;
 
 public class VideoStoreApplication {
 
+    //It is important you understand the use of static keyword
     private static Logger logger = LoggerFactory.getLogger(VideoStoreApplication.class);
     private static RentalService rentalService = new RentalService();
     private static Scanner in = new Scanner(System.in);
 
     public static void main(String[] args) {
-
-
 
         addInitialVideos();
         displayMainMenu();
